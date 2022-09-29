@@ -2,10 +2,10 @@
   <div class="bgc" style="border: 1px solid red">
     <el-form ref="form" label-width="80px" class="login_layout">
       <h2>汽车租赁管理系统</h2>
-      <el-form-item label="账号：">
+      <el-form-item label="用户名 ">
         <el-input
           type="text"
-          placeholder="请输入账号"
+          placeholder="请输入用户名"
           v-model="username"
         ></el-input>
       </el-form-item>
@@ -19,7 +19,7 @@
       <el-button type="primary" class="btn_login" @click="login"
         >登录</el-button
       >
-      <el-button type="primary" @click="register">注册</el-button>
+      <el-button type="primary" @click="register">去注册</el-button>
     </el-form>
   </div>
 </template>
@@ -34,18 +34,17 @@ export default {
     };
   },
   methods: {
-    login() {
-      // const { username, password } = this;
-      // let result = this.$store.dispatch("userLogin", { username, password });
-      // console.log(result.code);
-      //console.log(this.$store);
-      this.$router.push("/main");
+    async login() {
+      try {
+        const { username, password } = this;
+        await this.$store.dispatch("userLogin", { username, password });
+        this.$router.push("/main");
+      } catch (error) {
+        alert(error.message);
+      }
     },
     register() {
       this.$router.push("/register");
-      // const { username, password } = this;
-      // let result = this.$store.dispatch("userRegister", { username, password });
-      // console.log(result.code);
     },
   },
 };

@@ -2,6 +2,10 @@
   <div>
     <i
       class="arrow-icon"
+      :class="[
+        this.$store.state.isCollapse ? 'el-icon-s-unfold' : ' el-icon-s-fold',
+      ]"
+      @click="$store.commit('changeisCollapse')"
     ></i>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item class="title" v-show="$route.path != '/'">
@@ -18,19 +22,45 @@
     </el-breadcrumb>
 
     <!-- 轮播图   <el-carousel-item >-->
-    <el-carousel indicator-position="outside" height="630px">
-      <el-carousel-item>
-        <img src="" height="740px" />
+    <el-carousel indicator-position="outside" height="630px" v-if='$route.path=="/main"'>
+      <el-carousel-item v-for="item in lunbo" :key="item.id">
+        <img :src="item.src" height="740px" >
       </el-carousel-item>
     </el-carousel>
-
     <!-- <div class='title'>{{$route.meta.title}}</div> -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      lunbo:[
+        {
+          id:1,
+          src:require('@/assets/ccar1.jpg')
+        },
+        {
+          id:2,
+          src:require('@/assets/ccar2.jpg')
+        },
+        {
+          id:3,
+          src:require('@/assets/ccar3.jpg')
+        },
+        {
+          id:4,
+          src:require('@/assets/ccar4.jpg')
+        },
+        {
+          id:5,
+          src:require('@/assets/ccar5.jpg')
+        },
+      ]
+    }
+  },
+};
 </script>
 
 <style scoped>
