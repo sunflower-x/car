@@ -30,3 +30,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 第一次拉取
 
 第一次给gitee提交
+
+第一给github提交
